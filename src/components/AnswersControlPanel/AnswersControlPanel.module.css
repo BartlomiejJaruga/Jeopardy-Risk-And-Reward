@@ -1,0 +1,53 @@
+.answers_control_panel_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 100%;
+    height: 50%;
+
+    border-top: solid 0.2rem var(--control_panel_border_color);
+    border-left: solid 0.2rem var(--control_panel_border_color);
+    border-right: solid 0.2rem var(--control_panel_border_color);
+    border-radius: 1.5rem 1.5rem 0 0;
+
+    background-color: var(--answers_control_panel_color);
+}
+
+.answers_control_panel_container button {
+    border-radius: 50%;
+    font-size: clamp(0.5vmin, 1rem, 1vmax);
+    text-align: center;
+}
+
+.show_answer_button_clickable {
+    width: 7vmax;
+    height: 7vmax;
+    
+    background-color: var(--show_answer_button_clickable_color);
+    border: solid 0.3rem var(--show_answer_button_clickable_border_color);
+}
+
+.show_answer_button_unclickable {
+    width: 7vmax;
+    height: 7vmax;
+
+    background-color: var(--show_answer_button_unclickable_color);
+    border: solid 0.3rem var(--show_answer_button_unclickable_border_color);
+}
+
+.accept_answer_button {
+    width: 5vmax;
+    height: 5vmax;
+
+    background-color: var(--accept_answer_button_color);
+    border: solid 0.3rem var(--accept_answer_button_border_color);
+}
+
+.reject_answer_button {
+    width: 5vmax;
+    height: 5vmax;
+
+    background-color: var(--reject_answer_button_color);
+    border: solid 0.3rem var(--reject_answer_button_border_color);
+}

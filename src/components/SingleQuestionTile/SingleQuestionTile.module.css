@@ -1,0 +1,30 @@
+.single_question_tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: 100%;
+
+    background-color: var(--question_tile_color);
+    border: var(--question_tile_border_color) solid 0.1rem;
+
+    box-shadow: inset 0.2rem 0.2rem 1rem #020761, 
+                inset -0.1rem -0.1rem 1rem #020761;
+    
+    font-size: clamp(0.5vmin, 1.8rem, 3vmin);
+    color: var(--question_tile_text_color);
+
+    user-select: none;
+    -webkit-user-select: none; 
+    -ms-user-select: none;
+    cursor: default; 
+}
+
+.single_question_tile:hover {
+    background-color: var(--question_tile_hover_color);
+}
+
+.single_question_tile span {
+    text-align: center;
+}

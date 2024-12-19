@@ -1,3 +1,17 @@
+@import url('app_colors.css');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap');
+
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
 :root {
   font-synthesis: none;
   text-rendering: optimizeLegibility;

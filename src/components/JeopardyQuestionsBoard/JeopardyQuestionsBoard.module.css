@@ -1,0 +1,9 @@
+.board {
+    display: grid;
+    grid-auto-flow: column;
+    width: calc(80vmin - 5rem);
+    height: auto;
+    margin: 0 auto;
+    border: solid 0.2rem var(--jeopardy_board_border_color);
+    box-shadow: 1rem 1rem 4rem #000000be;
+}

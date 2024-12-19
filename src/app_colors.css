@@ -1,0 +1,56 @@
+:root {
+    --website_background: radial-gradient(circle at 37% 60%, #132bff 20%, #0c0066 100%);  
+    /* linear-gradient(0deg, #0c0066 0%, #132bff 100%) */
+    /* linear-gradient(135deg, #132bff 20%, #0c0066 70%) */
+    /* radial-gradient(circle at 37% 60%, #132bff 20%, #0c0066 100%) */
+    /* repeating-linear-gradient(45deg, #0c0066 1rem, #132bff 3rem) */
+    --game_logo_name_color: #ffdd00;
+
+    --timer_background_color: #acacac;          
+    --timer_border_color: #ececec;      
+
+
+    --black_text_color: #1f1f1f;
+    --gray_text_color: #686868;
+    --white_text_color: #efefef;
+    --question_tile_text_color: #ffe605;
+    --category_tile_text_color: #909090;
+
+
+    --category_tile_color: #0913cdf5;             
+    --category_tile_border_color: #0d0d0d;      
+    --question_tile_color: #1b24c9e7;           
+    --question_tile_border_color: #0d0d0d;
+    --question_tile_hover_color: #2e37e6e7;       
+    --jeopardy_board_border_color: #0d0d0d;     
+
+
+    --scoreboard_background_color: #d8aa7c;
+    --scoreboard_border_color: #A0522D;
+
+    --winner_color: #FFD700;                   
+    --second_place_color: #C0C0C0;             
+    --third_place_color: #CD7F32;  
+
+
+    --current_action_panel_color: #1b24c9e7;
+    --answers_control_panel_color: #1b24c9e7;
+    --settings_control_panel_color: #1b24c9e7;
+    --control_panel_border_color: #000;
+
+    --show_answer_button_unclickable_color: #686868;
+    --show_answer_button_unclickable_border_color: #4b4b4b;
+    --show_answer_button_clickable_color: #ffeb79;
+    --show_answer_button_clickable_border_color: #d6c047;
+    --accept_answer_button_color: #2ab22a;
+    --accept_answer_button_border_color: #127c12;
+    --reject_answer_button_color: #ee3211;
+    --reject_answer_button_border_color: #b71d02;
+
+    --mute_unmute_button_color: #686868;
+    --mute_unmute_button_border_color: #4b4b4b;
+    --settings_button_color: #666666;
+    --settings_button_border_color: #b4b4b4;
+    --exit_button_color: #ee3211;
+    --exit_button_border_color: #b71d02;      
+}

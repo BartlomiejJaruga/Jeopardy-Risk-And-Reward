@@ -1,0 +1,14 @@
+.timer_container {
+    width: 22vmin;
+    height: auto;
+    background-color: var(--timer_background_color);
+    border: solid 0.5rem var(--timer_border_color);
+    border-radius: 1.5rem;
+    font-size: clamp(0.5vmin, 3rem, 4vmax);
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.timer {
+    font-family: monospace;
+}

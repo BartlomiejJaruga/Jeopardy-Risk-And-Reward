@@ -1,0 +1,17 @@
+.current_action_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 80%;
+    height: 20%;
+
+    border-top: solid 0.2rem var(--control_panel_border_color);
+    border-left: solid 0.2rem var(--control_panel_border_color);
+    border-right: solid 0.2rem var(--control_panel_border_color);
+    border-radius: 2rem 2rem 0 0;
+
+    background-color: var(--current_action_panel_color);
+
+    font-size: clamp(0.5vmin, 1.5rem, 1.5vmax);
+}
