@@ -1,12 +1,12 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import classes from './JeopardyQuestionsBoard.module.css'
 import SingleQuestionTile from '@components/SingleQuestionTile/SingleQuestionTile'
 import CategoryNameTile from '@components/CategoryNameTile/CategoryNameTile';
 
 function getRandomCategoriesWithContent(categoriesAndQuestionsAndAnswers, count){
     const allCategories = Object.keys(categoriesAndQuestionsAndAnswers);
-    const shuffled = allCategories.sort(() => Math.random() - 0.5);
-    const selectedCategories = shuffled.slice(0, count);
+    const shuffledCategories = allCategories.sort(() => Math.random() - 0.5);
+    const selectedCategories = shuffledCategories.slice(0, count);
     
     const result = {};
     selectedCategories.forEach(category => {
@@ -17,19 +17,28 @@ function getRandomCategoriesWithContent(categoriesAndQuestionsAndAnswers, count)
 }
 
 function getRandomQuestions(allQuestions, count){
-    const allQuestionsNames = Object.keys(allQuestions);
-    const shuffled = allQuestionsNames.sort(() => Math.random() - 0.5);
-    const selectedQuestions = shuffled.slice(0, count);
+    const allQuestionsIDs = Object.keys(allQuestions);
+    const shuffledQuestionsIDs = allQuestionsIDs.sort(() => Math.random() - 0.5);
+    const selectedQuestionsIDs = shuffledQuestionsIDs.slice(0, count);
 
     const result = {};
-    selectedQuestions.forEach(question => {
-        result[question] = allQuestions[question];
+    selectedQuestionsIDs.forEach(questionID => {
+        result[questionID] = {
+            question: allQuestions[questionID].question, 
+            answer: allQuestions[questionID].answer
+        };
     });
 
     return result;
 }
 
-const generateCategoryTiles = (howMany, startsAt, increasesBy, categoryName, questions) => {
+const generateCategoryTiles = (howMany, 
+                                startsAt, 
+                                increasesBy, 
+                                categoryName, 
+                                questions, 
+                                getCurrentQuestionID,
+                                tileRefs) => {
     if(howMany < 1 || startsAt < 1 || increasesBy < 0){
         howMany = 5;
         startsAt = 100;
@@ -40,28 +49,30 @@ const generateCategoryTiles = (howMany, startsAt, increasesBy, categoryName, que
     categoryNameAndTiles.push(<CategoryNameTile categoryName={categoryName}/>);
 
     let questionCounter = 0;
-    for(let question in questions){
+    for(let questionID in questions){
         const tilePrize = (startsAt + increasesBy * questionCounter) + " $";
-        const individualKey = categoryName + questionCounter;
-        categoryNameAndTiles.push(<SingleQuestionTile key={individualKey} 
-            prize={tilePrize}
-            question={question}
-            answer={questions[question]}/>);
+
+        categoryNameAndTiles.push(<SingleQuestionTile key={questionID} 
+                                                    prize={tilePrize}
+                                                    questionID={questionID}
+                                                    question={questions[questionID].question}
+                                                    answer={questions[questionID].answer}
+                                                    getCurrentQuestionID={getCurrentQuestionID}
+                                                    ref={(el) => (tileRefs.current[questionID] = el)}/>);
+
         questionCounter++;
     }
-
-    // for(let i = 0; i < howMany; i++){
-    //     const tilePrize = (startsAt + increasesBy * i) + " $";
-    //     categoryNameAndTiles.push(<SingleQuestionTile key={i} 
-    //                                     prize={tilePrize}
-    //                                     question="Is Earth round or flat?"
-    //                                     answer="It is flat"/>);
-    // }
 
     return categoryNameAndTiles;
 }
 
-const generateCategories = (howManyColumns, howManyRows, startsAt, increasesBy, categoriesQuestionsAnswers) => {
+const generateCategories = (howManyColumns, 
+                            howManyRows, 
+                            startsAt, 
+                            increasesBy, 
+                            categoriesQuestionsAnswers, 
+                            getCurrentQuestionID,
+                            tileRefs) => {
     if(howManyColumns < 1 || howManyRows < 1 || startsAt < 1 || increasesBy < 0){
         howManyColumns = 5;
         howManyRows = 5;
@@ -78,9 +89,15 @@ const generateCategories = (howManyColumns, howManyRows, startsAt, increasesBy, 
             break;
         }
         
-        const questions = getRandomQuestions(chosenCategoriesQuestionAnswers[category], howManyRows);
+        const questionsAndAnswers = getRandomQuestions(chosenCategoriesQuestionAnswers[category], howManyRows);
 
-        categories.push(generateCategoryTiles(howManyRows, startsAt, increasesBy, category, questions));
+        categories.push(generateCategoryTiles(howManyRows, 
+                                                startsAt, 
+                                                increasesBy, 
+                                                category, 
+                                                questionsAndAnswers, 
+                                                getCurrentQuestionID,
+                                                tileRefs));
 
         categoryCounter++;
     }
@@ -92,20 +109,28 @@ function JeopardyQuestionsBoard({numberOfCategories,
                                 numberOfRowsInCategory, 
                                 categoryStartingMoney, 
                                 categoryMoneyIncreasesBy,
-                                categoriesAndQuestionsAndAnswers}) {
+                                categoriesAndQuestionsAndAnswers,
+                                getCurrentQuestionID,
+                                tileRefs}) {
     const gridStyles = {
         gridTemplateColumns: `repeat(${numberOfCategories}, minmax(0, 1fr))`,
         gridTemplateRows: `0.5fr repeat(${numberOfRowsInCategory}, minmax(0, 1fr))`,
         aspectRatio: `${numberOfCategories} / ${numberOfRowsInCategory+0.5}`
     };
 
+    const generatedBoard = useMemo(() => {
+        return generateCategories(numberOfCategories, 
+            numberOfRowsInCategory, 
+            categoryStartingMoney, 
+            categoryMoneyIncreasesBy,
+            categoriesAndQuestionsAndAnswers,
+            getCurrentQuestionID,
+            tileRefs);
+    }, []);
+
     return (
         <div className={classes.board} style={gridStyles}>
-            {generateCategories(numberOfCategories, 
-                                numberOfRowsInCategory, 
-                                categoryStartingMoney, 
-                                categoryMoneyIncreasesBy,
-                                categoriesAndQuestionsAndAnswers)}
+            {generatedBoard}
         </div>
     );
 }

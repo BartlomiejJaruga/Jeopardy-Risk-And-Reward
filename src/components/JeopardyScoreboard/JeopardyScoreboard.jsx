@@ -1,36 +1,29 @@
 import classes from './JeopardyScoreboard.module.css';
+import DoubleNextRewardButton from "@components/DoubleNextRewardButton/DoubleNextRewardButton";
+import StealMoneyButton from "@components/StealMoneyButton/StealMoneyButton";
 
-function JeopardyScoreboard({playersInfo}){
+const generatePlayers = (playersInfo, buyStealMoneyHandler, buyDoubleRewardHandler) => {
+    const scoreboard = [];
+    for(const playerID in playersInfo){
+        scoreboard.push(<div>
+                            <span>{playersInfo[playerID].name}: {playersInfo[playerID].money} $</span>
+                            <StealMoneyButton playerID={playerID} buyStealMoneyHandler={buyStealMoneyHandler}/>
+                            <DoubleNextRewardButton playerID={playerID} buyDoubleRewardHandler={buyDoubleRewardHandler}/>
+                        </div>)
+    }
+    
+    return scoreboard;
+};
+
+
+function JeopardyScoreboard({playersInfo, buyStealMoneyHandler, buyDoubleRewardHandler}){
     return(
         <div className={classes.scoreboard}>
             <div className={classes.scoreboard_name_container}>
                 <span>SCOREBOARD</span>
             </div>
             <div className={classes.players_scores_container}>
-                <div>
-                    <span>player1: 1000 $</span>
-                </div>
-                <div>
-                    <span>player2: 2000 $</span>
-                </div>
-                <div>
-                    <span>player3: 3000 $</span>
-                </div>
-                <div>
-                    <span>player3: 3000 $</span>
-                </div>
-                <div>
-                    <span>player3: 3000 $</span>
-                </div>
-                <div>
-                    <span>player3: 3000 $</span>
-                </div>
-                <div>
-                    <span>player3: 3000 $</span>
-                </div>
-                <div>
-                    <span>player3: 3000 $</span>
-                </div>
+                {generatePlayers(playersInfo, buyStealMoneyHandler, buyDoubleRewardHandler)}
             </div>
             
         </div>

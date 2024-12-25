@@ -2,13 +2,21 @@ import classes from "./ControlPanel.module.css";
 import CurrentActionPanel from "@components/CurrentActionPanel/CurrentActionPanel";
 import AnswersControlPanel from "@components/AnswersControlPanel/AnswersControlPanel";
 import SettingsControlPanel from "@components/SettingsControlPanel/SettingsControlPanel";
+import { useState } from "react";
 
+function ControlPanel({ playersInfo, 
+                        currentPlayerID, 
+                        currentInfo, 
+                        buttonsToShow, 
+                        changeShowingButtonsTo,
+                        changeHostDecisionStateTo }) {
 
-function ControlPanel() {
     return(
         <div className={classes.control_panel_container}>
-            <CurrentActionPanel currentAction="Answers" currentPlayer="player1"/>
-            <AnswersControlPanel/>
+            <CurrentActionPanel currentInfo={currentInfo}/>
+            <AnswersControlPanel buttonsToShow={buttonsToShow} 
+                                changeShowingButtonsTo={changeShowingButtonsTo}
+                                changeHostDecisionStateTo={changeHostDecisionStateTo}/>
             <SettingsControlPanel/>
         </div>
     );

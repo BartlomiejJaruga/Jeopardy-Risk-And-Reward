@@ -1,9 +1,7 @@
 import classes from "./CurrentActionPanel.module.css";
 
 
-function CurrentActionPanel({currentAction, currentPlayer}) {
-    const currentInfo = currentAction + ": " + currentPlayer;
-
+function CurrentActionPanel({currentInfo}) {
     return(
         <div className={classes.current_action_container}>
             {currentInfo}

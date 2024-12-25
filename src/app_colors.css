@@ -28,6 +28,9 @@
     --scoreboard_background_color: #d8aa7c;
     --scoreboard_border_color: #A0522D;
 
+    --scoreboard_player_action_buttons_background_color: #1b24c9e7;
+    --scoreboard_player_action_buttons_background_hover_color: #5058f5e7;
+
     --winner_color: #FFD700;                   
     --second_place_color: #C0C0C0;             
     --third_place_color: #CD7F32;  
