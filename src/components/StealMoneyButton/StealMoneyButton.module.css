@@ -8,6 +8,7 @@
     font-size: 1rem;
     color: var(--white_text_color);
     text-align: center;
+    margin-right: 0.5rem;
 }
 
 .steal_money_button_container:hover {

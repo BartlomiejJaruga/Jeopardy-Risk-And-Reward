@@ -7,8 +7,10 @@ const generatePlayers = (playersInfo, buyStealMoneyHandler, buyDoubleRewardHandl
     for(const playerID in playersInfo){
         scoreboard.push(<div>
                             <span>{playersInfo[playerID].name}: {playersInfo[playerID].money} $</span>
-                            <StealMoneyButton playerID={playerID} buyStealMoneyHandler={buyStealMoneyHandler}/>
-                            <DoubleNextRewardButton playerID={playerID} buyDoubleRewardHandler={buyDoubleRewardHandler}/>
+                            <div className={classes.players_boost_buttons}>
+                                <StealMoneyButton playerID={playerID} buyStealMoneyHandler={buyStealMoneyHandler}/>
+                                <DoubleNextRewardButton playerID={playerID} buyDoubleRewardHandler={buyDoubleRewardHandler}/>
+                            </div>
                         </div>)
     }
     
