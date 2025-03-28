@@ -13,6 +13,8 @@ const gameSettings = {
     categoryMoneyIncreasesBy: 100,
     timeToAnswer: 70,   // sec
     playersCount: 3,
+    doubleNextRewardBoostCost: 200,
+    stealMoneyBoostCost: 500
 };
 
 const players = {
@@ -270,13 +272,11 @@ function App() {
             }
 
             if(players[gameStateInfo.currentPlayerID].stealMoney && moneyAdded == 0){
-                console.log("Okradamy");
                 let moneyToAdd = parseInt(wonPrizeWithoutSpaces);
                 for(let i = 0; i < Object.keys(players).length; i++){
                     if(i !== gameStateInfo.currentPlayerID){
-                        console.log("obecny okradany gracz: " + i);
-                        players[i].money -= 250;
-                        moneyToAdd += 250;
+                        players[i].money -= parseInt(wonPrizeWithoutSpaces);
+                        moneyToAdd += parseInt(wonPrizeWithoutSpaces);
                     }
                 }
                 players[gameStateInfo.currentPlayerID].money += moneyToAdd;
@@ -368,8 +368,8 @@ function App() {
         if(playerID >= 0 && playerID < Object.keys(players).length 
             && gameStateInfo.currentPlayerID == playerID
             && players[playerID].doubleNextReward === false
-            && players[playerID].money >= 200){
-                players[playerID].money -= 200;
+            && players[playerID].money >= gameSettings.doubleNextRewardBoostCost){
+                players[playerID].money -= gameSettings.doubleNextRewardBoostCost;
                 setDoubleRewardForPlayerWithID(playerID);
         }
     }
@@ -389,8 +389,8 @@ function App() {
         if(playerID >= 0 && playerID < Object.keys(players).length 
             && gameStateInfo.currentPlayerID == playerID
             && players[playerID].stealMoney === false
-            && players[playerID].money >= 300){
-                players[playerID].money -= 300;
+            && players[playerID].money >= gameSettings.stealMoneyBoostCost){
+                players[playerID].money -= gameSettings.stealMoneyBoostCost;
                 setStealMoneyForPlayerWithID(playerID);
         }
     }
