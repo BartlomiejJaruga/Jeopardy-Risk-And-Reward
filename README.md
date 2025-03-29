@@ -1,6 +1,6 @@
 # Jeopardy Risk & Reward
 
-This classic game of Jeopardy was mixed with some additional elements which players can use in order to **boost** their in-game experience and provide yourself a better chance of winning!
+This classic game of Jeopardy was mixed with some additional elements which players can use in order to **boost** their in-game experience and provide themself a better chance of winning!
 <br>
 <br>
 > [!IMPORTANT]
