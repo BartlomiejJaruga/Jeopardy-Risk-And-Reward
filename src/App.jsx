@@ -7,14 +7,14 @@ import ControlPanel from '@components/ControlPanel/ControlPanel';
 import {buttonsToShowENUM, currentActionsInfoENUM, hostDecisionStateENUM, timerStateENUM} from "@enums";
 
 const gameSettings = {
-    numberOfCategories: 5,
-    numberOfRowsInCategory: 5,
-    categoryStartingMoney: 100,
-    categoryMoneyIncreasesBy: 100,
-    timeToAnswer: 70,   // sec
-    playersCount: 3,
-    doubleNextRewardBoostCost: 200,
-    stealMoneyBoostCost: 500
+    numberOfCategories: 5,          // number of columns in Jeopardy grid
+    numberOfRowsInCategory: 5,      // number of rows in Jeopardy grid
+    categoryStartingMoney: 100,     // amount of money that the tile prizes start from
+    categoryMoneyIncreasesBy: 100,  // amount of money that each row of tiles increases by
+    timeToAnswer: 70,               // amount of time to answer the question (in seconds)
+    playersCount: 3,                // amount of players participating in game
+    doubleNextRewardBoostCost: 200, // cost of the Double Reward boost
+    stealMoneyBoostCost: 500        // cost of the Stealopardy boost
 };
 
 const players = {
